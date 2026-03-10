@@ -1,36 +1,33 @@
 # 🧠 Brain Tumor Detection Using VGG16 (MRI Images)
 
-> **Course:** Deep Learning / Medical Image Analysis  
 > **Model:** VGG16 (Transfer Learning)  
 > **Framework:** PyTorch  
-> **Total Marks:** 100 + 10 Bonus
+> **Domain:** Medical Image Analysis
 
 ---
 
 ## 📋 Table of Contents
 
-- [Objective](#objective)
+- [Overview](#overview)
 - [Dataset](#dataset)
-- [Part A – Dataset Preparation](#part-a--dataset-preparation-15-marks)
-- [Part B – Model Implementation](#part-b--model-implementation-15-marks)
-- [Part C – Training](#part-c--training-15-marks)
-- [Part D – Evaluation](#part-d--evaluation-15-marks)
-- [Part E – Experimental Analysis](#part-e--experimental-analysis-20-marks)
-- [Deployment (Bonus)](#deployment-bonus--10-marks)
-- [Reflection](#reflection)
+- [Preprocessing](#preprocessing)
+- [Model Architecture](#model-architecture)
+- [Training](#training)
+- [Evaluation](#evaluation)
+- [Experimental Analysis](#experimental-analysis)
+- [Deployment](#deployment)
+- [Challenges & Learnings](#challenges--learnings)
 - [How to Run](#how-to-run)
 - [Project Structure](#project-structure)
 
 ---
 
-## Objective
+## Overview
 
-Build a **binary classification model** using transfer learning with **VGG16** to detect:
+A **binary classification pipeline** using transfer learning with **VGG16** to detect brain tumors from MRI scans:
 
-- ✅ **Tumor** — Brain MRI showing a tumor
-- ✅ **Normal** — Healthy brain MRI
-
-from MRI brain images.
+- **Tumor** — Brain MRI showing a tumor
+- **Normal** — Healthy brain MRI
 
 ---
 
@@ -60,9 +57,9 @@ dataset/
 
 ---
 
-## Part A – Dataset Preparation (15 Marks)
+## Preprocessing
 
-### Preprocessing Pipeline
+### Pipeline
 
 All images undergo the following transformations:
 
@@ -96,9 +93,9 @@ train_transform = transforms.Compose([
 
 ---
 
-## Part B – Model Implementation (15 Marks)
+## Model Architecture
 
-### Architecture: VGG16 (Transfer Learning)
+### VGG16 (Transfer Learning)
 
 - **Base model:** VGG16 pretrained on ImageNet (1000 classes)
 - **Modification:** Final fully connected layer replaced with `Linear(4096, 2)` for binary classification
@@ -135,9 +132,9 @@ VGG16(
 
 ---
 
-## Part C – Training (15 Marks)
+## Training
 
-### Training Configuration
+### Configuration
 
 | Parameter | Value |
 |-----------|-------|
@@ -163,7 +160,7 @@ VGG16(
 
 ---
 
-## Part D – Evaluation (15 Marks)
+## Evaluation
 
 ### Test Set Performance
 
@@ -217,7 +214,7 @@ weighted avg       0.78      0.65      0.54        51
 
 ---
 
-## Part E – Experimental Analysis (20 Marks)
+## Experimental Analysis
 
 ### Experiment 1: Learning Rate Comparison
 
@@ -259,7 +256,7 @@ Training with lr=0.001, all layers unfrozen.
 
 ---
 
-## Deployment (Bonus – 10 Marks)
+## Deployment
 
 ### Streamlit Web Application
 
@@ -286,7 +283,7 @@ The app runs at `http://localhost:8501`.
 
 ---
 
-## Reflection
+## Challenges & Learnings
 
 ### Challenges Faced
 
@@ -326,7 +323,7 @@ pip install torch torchvision matplotlib scikit-learn streamlit pillow kagglehub
 python download_dataset.py
 ```
 
-### Step 2: Train & Evaluate (Parts A–D)
+### Step 2: Train & Evaluate
 
 ```bash
 python main.py
@@ -337,7 +334,7 @@ python main.py
 - `confusion_matrix.png` — Test set confusion matrix
 - `vgg16_brain_tumor.pth` — Saved model weights
 
-### Step 3: Run Experiments (Part E)
+### Step 3: Run Experiments
 
 ```bash
 python experiments.py
@@ -346,7 +343,7 @@ python experiments.py
 **Output:**
 - `experiments_results.png` — Comparative analysis charts
 
-### Step 4: Launch Web App (Bonus)
+### Step 4: Launch Web App
 
 ```bash
 python -m streamlit run app.py
@@ -360,12 +357,11 @@ Opens at `http://localhost:8501`
 
 ```
 DL/
-├── main.py                  # Parts A–D: Dataset, Model, Training, Evaluation
-├── experiments.py           # Part E: Experimental Analysis
-├── app.py                   # Bonus: Streamlit Deployment
+├── main.py                  # Dataset, Model, Training, Evaluation
+├── experiments.py           # Experimental Analysis
+├── app.py                   # Streamlit Web App
 ├── download_dataset.py      # Dataset download & organization
-├── reflection.md            # Reflection document
-├── README.md                # This comprehensive report
+├── README.md                # Project documentation
 ├── index.html               # GitHub Pages webpage
 ├── training_curves.png      # Training loss & accuracy plots
 ├── confusion_matrix.png     # Test confusion matrix
@@ -398,5 +394,5 @@ DL/
 ---
 
 <p align="center">
-  <b>Built with ❤️ for Deep Learning</b>
+  <b>Built with ❤️ using PyTorch</b>
 </p>

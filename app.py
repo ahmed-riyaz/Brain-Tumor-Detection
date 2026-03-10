@@ -1,5 +1,5 @@
 """
-Brain Tumor Detection – Streamlit Deployment (Bonus 10 Marks)
+Brain Tumor Detection – Streamlit Web App
 Upload an MRI image and get a prediction: Tumor / Normal
 """
 
@@ -10,7 +10,8 @@ from torchvision import models, transforms
 from PIL import Image
 import streamlit as st
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "vgg16_brain_tumor.pth")
+HEAD_PATH = os.path.join(os.path.dirname(__file__), "classifier_head.pth")
+FULL_MODEL_PATH = os.path.join(os.path.dirname(__file__), "vgg16_brain_tumor.pth")
 CLASS_NAMES = ["Normal", "Tumor"]
 
 transform = transforms.Compose([
@@ -23,9 +24,12 @@ transform = transforms.Compose([
 
 @st.cache_resource
 def load_model():
-    model = models.vgg16(weights=None)
+    model = models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
     model.classifier[6] = nn.Linear(model.classifier[6].in_features, 2)
-    model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu", weights_only=True))
+    if os.path.exists(FULL_MODEL_PATH):
+        model.load_state_dict(torch.load(FULL_MODEL_PATH, map_location="cpu", weights_only=True))
+    elif os.path.exists(HEAD_PATH):
+        model.classifier[6].load_state_dict(torch.load(HEAD_PATH, map_location="cpu", weights_only=True))
     model.eval()
     return model
 

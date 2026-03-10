@@ -1,8 +1,8 @@
 # Dataset (too large for git)
 dataset/
 
-# Model weights (too large for git)
-*.pth
+# Full model weights (too large for git)
+vgg16_brain_tumor.pth
 
 # Python
 __pycache__/
